@@ -8,4 +8,4 @@ foreground {
 	/usr/bin/setcap cap_net_bind_service+ei /usr/bin/stubby
 }
 exec -c
-/usr/bin/capsh --inh=cap_net_bind_service --user=stubby -- -c "exec /usr/bin/stubby" -l 
+/usr/bin/capsh --inh=cap_net_bind_service --user=stubby -- -c "exec /usr/bin/stubby -l" 

@@ -1,4 +1,11 @@
 #!@BINDIR_EXECLINE@/execlineb -P
 fdmove -c 2 1
+foreground {
+	if -n {
+		pipeline { /usr/bin/getcap /usr/bin/stubby }
+		s6-grep -F "cap_net_bind_servie"
+	}
+	/usr/bin/setcap cap_net_bind_service+ei /usr/bin/stubby
+}
 exec -c
-/usr/bin/capsh --inh=cap_net_bind_service --user=stubby -- -c /usr/bin/stubby -l 
+/usr/bin/capsh --inh=cap_net_bind_service --user=stubby -- -c "exec /usr/bin/stubby" -l 
